@@ -54,17 +54,23 @@ def get_transforms():
     return transforms.Compose([
         transforms.Resize((224, 224)), #required for ViT-Tiny
         transforms.ToTensor(),
-        transforms.Normalize(
-            mean= [0.4914, 0.4822, 0.4465], #[0.485, 0.456, 0.406], #Standard ImageNet mean
-            std= [0.2023, 0.1994, 0.2010] #[0.229, 0.224, 0.225] #Standard ImageNet variance
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+            #mean=[0.485, 0.456, 0.406], #Standard ImageNet mean
+            #std=[0.229, 0.224, 0.225] #Standard ImageNet variance
         )
     ])
 
-def get_loader(root_dir, corruption, severity, batch_size=32):
+def get_loader(root_dir, corruption, severity, batch_size=128, input_size=32):
+    transform = transforms.Compose([
+        # transforms.ToPILImage(),
+        transforms.Resize((input_size, input_size)), # Dynamic resize
+        transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
+    ])
     dataset = CIFAR10C(
         root_dir=root_dir,
         corruption_name=corruption,
         severity=severity,
-        transform=get_transforms()
+        transform=transform
     )
     return DataLoader(dataset, batch_size=batch_size, shuffle=False)

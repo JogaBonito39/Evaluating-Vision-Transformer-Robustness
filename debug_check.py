@@ -8,7 +8,8 @@ def run_sanity_check():
     # 1. Load the model and data
     model = get_resnet18().to(device)
     # We use severity 1 fog just as a sample
-    loader = get_loader(root_dir="./data/CIFAR-10-C", corruption='fog', severity=1, batch_size=5)
+   
+    loader = get_loader(root_dir="./data/CIFAR-10-C", corruption='fog', severity=1, batch_size=5, input_size=32)
     
     # 2. Grab exactly one batch of 5 images
     images, labels = next(iter(loader))
@@ -24,10 +25,10 @@ def run_sanity_check():
     
     # Explanation logic
     if any(p > 9 for p in predicted):
-        print("\n❌ DIAGNOSIS: Class Mismatch!")
+        print("\nDIAGNOSIS: Class Mismatch!")
         print("The model predicted IDs greater than 9. It's using ImageNet classes (0-999).")
     else:
-        print("\n✅ Predicted IDs are within 0-9. Checking for accuracy...")
+        print("\n Predicted IDs are within 0-9.")
 
 if __name__ == "__main__":
     run_sanity_check()

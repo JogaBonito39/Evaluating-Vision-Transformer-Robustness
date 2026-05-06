@@ -21,9 +21,10 @@ def run_experiment(model_name):
 
     if model_name == "resnet18":
         model = get_resnet18().to(device)
+        input_size = 32
     else:
         model = get_vit_tiny().to(device)
-
+        input_size = 224
     corruptions = [
         'gaussian_noise', 'shot_noise', 'impulse_noise', 'defocus_blur', 
         'glass_blur', 'motion_blur', 'zoom_blur', 'snow', 'frost', 'fog', 
@@ -36,7 +37,7 @@ def run_experiment(model_name):
         print(f"Testing {model_name} on {corr}...")
         severity_accs = []
         for sev in range(1, 6):
-            loader = get_loader(root_dir="./data/CIFAR-10-C", corruption=corr, severity=sev)
+            loader = get_loader(root_dir="./data/CIFAR-10-C", corruption=corr, severity=sev, input_size=input_size)
             acc = evaluate_model(model, loader, device)
             severity_accs.append(acc)
 
