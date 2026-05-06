@@ -1,5 +1,15 @@
-data_path = "./data/CIFAR-10-C/"
-# loader = get_loader(root_dir=data_path, corruption='fog', severity=3)
+from src.evaluate import run_experiment
+
+def main():
+    print("--- Starting CIFAR-10-C Robustness Benchmark ---")
+
+    print("\nEvaluating ResNet-18...")
+    resnet_results = run_experiment('resnet18')
+    
+    print("\nEvaluating ViT-Tiny...")
+    vit_results = run_experiment('vit_tiny')
+
+    print("\n--- Benchmark Complete! Results saved to JSON files ---")
 
 if __name__ == "__main__":
-    pass
+    main()
