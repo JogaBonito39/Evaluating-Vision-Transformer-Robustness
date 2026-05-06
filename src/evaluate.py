@@ -7,7 +7,7 @@ def evaluate_model(model, dataloader, device):
     model.eval()
     correct = 0
     total = 0
-    with torch.nograd():
+    with torch.no_grad():
         for images, labels in dataloader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
