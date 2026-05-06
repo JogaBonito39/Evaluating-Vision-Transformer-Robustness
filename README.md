@@ -1,0 +1,1 @@
+1. Clone this repo. 2. Download CIFAR-10-C from Zenodo. 3. Place the .npy files inside the /data folder.
