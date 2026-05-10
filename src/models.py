@@ -55,6 +55,6 @@ def get_vit_tiny():
     return model
 
 def move_to_device(model):
-    # Detect if a GPU (CUDA or MPS for Mac) is available, otherwise use CPU
+    # Detect if a GPU (CUDA or MPS) is available, otherwise use CPU (last resort)
     device = torch.device("cuda" if torch.cude.is_available() else "cpu")
     return model.to(device), device

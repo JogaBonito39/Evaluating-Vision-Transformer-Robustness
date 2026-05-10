@@ -3,3 +3,11 @@ torchvision
 numpy
 pillow
 matplotlib
+numpy
+PIL
+json
+huggingface_hub
+vit_pytorch
+transformers
+safetensors
+seaborn
