@@ -50,7 +50,6 @@ class CIFAR10C(Dataset):
         return img, torch.tensor(label, dtype=torch.long)
     
 def get_transforms():
-    #Returns the transformation pipeline mentioned in the proposal
     return transforms.Compose([
         transforms.Resize((224, 224)), #required for ViT-Tiny
         transforms.ToTensor(),
