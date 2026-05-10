@@ -35,6 +35,7 @@ Extraction: Extract the .npy files into the data/ folder.
 
 Verification: Ensure your directory matches the following structure:
 
+```
 Evaluating-Vision-Transformer-Robustness/
 ├── data/CIFAR-10-C
 │   ├── labels.npy
@@ -45,7 +46,7 @@ Evaluating-Vision-Transformer-Robustness/
 ├── src/
 ├── main.py
 └── README.md
-
+```
 
 ## 3. Running the Experiment
 Once the data is in place, you can run the full benchmark for both models. The script iterates through the dataset, calculates accuracy for every corruption/severity combination, and saves the results to JSON files for later visualization.
